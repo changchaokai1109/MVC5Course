@@ -22,12 +22,15 @@ namespace MVC5Course.Models
 
       public int ProductId { get; set; }
       [Required(ErrorMessage ="請輸入商品名稱")]
+      [MinLength(3),MaxLength(30)]
       public string ProductName { get; set; }
-      [Required(ErrorMessage ="請輸入價格")]
+      [Required]
+      [Range(0,9999,ErrorMessage ="請輸入正確價格")]
       public Nullable<decimal> Price { get; set; }
       [Required]
       public Nullable<bool> Active { get; set; }
       [Required]
+      [Range(0,100,ErrorMessage ="請輸入正確數量")]
       public Nullable<decimal> Stock { get; set; }
       
 
