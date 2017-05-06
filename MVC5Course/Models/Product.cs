@@ -21,9 +21,9 @@ namespace MVC5Course.Models
       }
 
       public int ProductId { get; set; }
-      [Required]
+      [Required(ErrorMessage ="請輸入商品名稱")]
       public string ProductName { get; set; }
-      [Required]
+      [Required(ErrorMessage ="請輸入價格")]
       public Nullable<decimal> Price { get; set; }
       [Required]
       public Nullable<bool> Active { get; set; }
