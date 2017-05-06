@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using MVC5Course.Models.ViewModels;
 
 namespace MVC5Course.Controllers
 {
@@ -47,7 +48,7 @@ namespace MVC5Course.Controllers
         // POST: Products/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
+        [HttpPost]//區分Create動作如果有Post就執行
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product product)
         {
@@ -126,5 +127,19 @@ namespace MVC5Course.Controllers
             }
             base.Dispose(disposing);
         }
+      public ActionResult ListProducts() {
+         var data = db.Product
+            .Where(p=>p.Active == true)
+            .Select(p => new ProductLiteVM()
+            {
+               ProductId = p.ProductId,
+               ProductName = p.ProductName,
+               Price = p.Price,
+               Stock = p.Stock
+            })
+            .Take(10);
+
+         return View(data);
+      }
     }
 }
