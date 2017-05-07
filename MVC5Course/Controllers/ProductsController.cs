@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
 using MVC5Course.Models.ViewModels;
+using System.Web.Http.ModelBinding;
 
 namespace MVC5Course.Controllers
 {
@@ -140,6 +141,16 @@ namespace MVC5Course.Controllers
             .Take(10);
 
          return View(data);
+      }
+      public ActionResult CreateProduct() {
+         return View();
+      }
+      [HttpPost]
+      public ActionResult CreateProduct(ProductLiteVM data) {
+         if(ModelState.IsValid) {
+            return RedirectToAction("ListProducts");
+         }
+         return View();
       }
     }
 }
