@@ -279,6 +279,7 @@
     <Compile Include="Models\Product.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ValidationAttributes\商品名稱必須包含Will字串Attribute.cs" />
     <Compile Include="Models\ViewModels\ProductLiteVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -391,6 +392,7 @@
     <Content Include="Views\EF\Creare.cshtml" />
     <Content Include="Views\EF\Edit.cshtml" />
     <Content Include="Views\EF\Delete.cshtml" />
+    <Content Include="Views\EF\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

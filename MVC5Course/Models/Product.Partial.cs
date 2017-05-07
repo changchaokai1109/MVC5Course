@@ -22,9 +22,11 @@ namespace MVC5Course.Models
 
 
       [Required(ErrorMessage = "請輸入商品名稱")]
-      [MinLength(3), MaxLength(30)]
-      [RegularExpression("(.+)-(.+)", ErrorMessage = "商品名稱格式錯誤")]
+
+      //[MinLength(3), MaxLength(30)]
+      //[RegularExpression("(.+)-(.+)", ErrorMessage = "商品名稱格式錯誤")]
       [DisplayName("商品名稱")]
+      [ValidationAttributes.商品名稱必須包含Will字串(ErrorMessage = "商品名稱必須包含Will字串")]
       public string ProductName { get; set; }
       [Required]
       [Range(0, 9999, ErrorMessage = "請設定正確的商品價格範圍")]

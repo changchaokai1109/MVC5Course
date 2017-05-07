@@ -13,11 +13,16 @@ namespace MVC5Course.Controllers
         // GET: EF
         public ActionResult Index()
         {
-            
+           var all = db.Product.AsQueryable();
 
-            var all = db.Product.AsQueryable();
-            var data = all.Where(p => 
-            p.Active == true && p.ProductName.Contains("Black"));
+            var data = all
+                .Where(p => p.isDeleted == false && p.Active == true && p.ProductName.Contains("Black"))
+                .OrderByDescending(p => p.ProductId);
+
+            //var data1 = all.Where(p => p.ProductId == 1);
+            //var data2 = all.FirstOrDefault(p => p.ProductId == 1);
+            //var data3 = db.Product.Find(1);
+
             return View(data);
         }
 
@@ -30,6 +35,8 @@ namespace MVC5Course.Controllers
          if(ModelState.IsValid) {
             db.Product.Add(product);
             db.SaveChanges();
+
+             return RedirectToAction("Index");
          }
          return View();
       }
@@ -63,11 +70,18 @@ namespace MVC5Course.Controllers
          //   db.OrderLine.Remove(item);
          //   db.SaveChanges();
          //}
-         db.OrderLine.RemoveRange(product.OrderLine);//此行代表上面4行
-         db.Product.Remove(product);
+         //db.OrderLine.RemoveRange(product.OrderLine);//此行代表上面4行
+         //db.Product.Remove(product);
+         product.isDeleted =true;
          db.SaveChanges();//永遠在最後一步再SaveChanges()
 
          return RedirectToAction("Index");
       }
+
+      public ActionResult Details(int id) {
+          var data = db.Database.SqlQuery<Product>("SELECT * FROM dbo.Product WHERE ProductId=@p0", id).FirstOrDefault();
+         return View(data);
+      }
+      
     }
 }
