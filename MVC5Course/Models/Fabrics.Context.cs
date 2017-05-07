@@ -13,16 +13,16 @@ namespace MVC5Course.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FabricsEntities : DbContext
+    public partial class FabricsEntities : DbContext //partial代表此類別可以被擴充
     {
         public FabricsEntities()
-            : base("name=FabricsEntities")
+            : base("name=FabricsEntities")//連接字串
         {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            throw new UnintentionalCodeFirstException();//不會執行
         }
     
         public virtual DbSet<Client> Client { get; set; }
