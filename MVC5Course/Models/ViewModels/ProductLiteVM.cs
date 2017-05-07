@@ -5,7 +5,9 @@ using System.Linq;
 using System.Web;
 
 namespace MVC5Course.Models.ViewModels
-{
+{  /// <summary>
+/// 這是一個精簡版的product用來建置product用
+/// </summary>
    public class ProductLiteVM
    {
       public int ProductId { get; set;}
